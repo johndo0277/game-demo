@@ -3,8 +3,15 @@ import { Grid, GridItem, Show, Text } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import { Genre } from "./hooks/useGenres";
+import { Platform } from "./hooks/useGames";
 
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+}
 function App() {
+  const [gameQuery, setGameQuery] = useState({} as GameQuery);
   return (
     <Grid
       templateAreas={{
@@ -25,7 +32,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <GameGrid />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );
