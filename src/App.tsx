@@ -9,7 +9,7 @@ import PlatformSelector from "./components/PlatformSelector";
 
 export interface GameQuery {
   genre: Genre | null;
-  platform: Platform | null;
+  parent_platforms: Platform | null;
 }
 function App() {
   const [gameQuery, setGameQuery] = useState({} as GameQuery);
@@ -37,8 +37,9 @@ function App() {
       </Show>
       <GridItem area="main">
         <PlatformSelector
-          onSelectedPlatform={(platform) =>
-            setGameQuery({ ...gameQuery, platform })
+          seletedPlatform={gameQuery.parent_platforms}
+          onSelectedPlatform={(parent_platforms) =>
+            setGameQuery({ ...gameQuery, parent_platforms })
           }
         />
         <GameGrid gameQuery={gameQuery} />
