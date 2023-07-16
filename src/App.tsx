@@ -5,6 +5,7 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { Genre } from "./hooks/useGenres";
 import { Platform } from "./hooks/useGames";
+import PlatformSelector from "./components/PlatformSelector";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -35,6 +36,11 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
+        <PlatformSelector
+          onSelectedPlatform={(platform) =>
+            setGameQuery({ ...gameQuery, platform })
+          }
+        />
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
