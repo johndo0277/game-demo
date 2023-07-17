@@ -13,6 +13,7 @@ export interface GameQuery {
   genre: Genre | null;
   parent_platforms: Platform | null;
   searchText: string;
+  sortOrder: string;
 }
 function App() {
   const [gameQuery, setGameQuery] = useState({} as GameQuery);
@@ -49,7 +50,11 @@ function App() {
               setGameQuery({ ...gameQuery, parent_platforms })
             }
           />
-          <SortSelector />
+          <SortSelector
+            onSelectSortOrder={(sortOrder) =>
+              setGameQuery({ ...gameQuery, sortOrder })
+            }
+          />
         </HStack>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
