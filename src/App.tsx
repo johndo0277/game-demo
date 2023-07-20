@@ -7,9 +7,6 @@ import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 import useGameQueryStore from "./store";
 
-//undefined: the absence of a value : use ?
-//null: the intenational absence of a value
-
 function App() {
   const {} = useGameQueryStore();
   return (
