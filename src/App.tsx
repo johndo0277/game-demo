@@ -1,17 +1,20 @@
+import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import { useState } from "react";
-import { Grid, GridItem, HStack, Show, Text } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
+import GameHeading from "./components/GameHeading";
 import GenreList from "./components/GenreList";
+import NavBar from "./components/NavBar";
+import PlatformSelector from "./components/PlatformSelector";
+import SortSelector from "./components/SortSelector";
 import { Genre } from "./hooks/useGenres";
 import { Platform } from "./hooks/usePlatforms";
-import PlatformSelector from "./components/PlatformSelector";
-import GameHeading from "./components/GameHeading";
-import SortSelector from "./components/SortSelector";
+
+//undefined: the absence of a value : use ?
+//null: the intenational absence of a value
 
 export interface GameQuery {
-  genre: Genre | null;
-  parent_platforms: Platform | null;
+  genreId?: number;
+  parent_platformsId?: number;
   searchText: string;
   sortOrder: string;
 }
@@ -36,8 +39,10 @@ function App() {
       <Show above="lg">
         <GridItem area="aside" paddingX="5px">
           <GenreList
-            selectedGenre={gameQuery.genre}
-            onSelectedGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+            selectedGenreId={gameQuery.genreId}
+            onSelectGenre={(genre) =>
+              setGameQuery({ ...gameQuery, genreId: genre.id })
+            }
           />
         </GridItem>
       </Show>
@@ -45,9 +50,12 @@ function App() {
         <GameHeading gameQuery={gameQuery} />
         <HStack spacing={5} paddingLeft={2} marginBottom={5}>
           <PlatformSelector
-            seletedPlatform={gameQuery.parent_platforms}
-            onSelectedPlatform={(parent_platforms) =>
-              setGameQuery({ ...gameQuery, parent_platforms })
+            seletedPlatformId={gameQuery.parent_platformsId}
+            onSelectPlatform={(parent_platforms) =>
+              setGameQuery({
+                ...gameQuery,
+                parent_platformsId: parent_platforms.id,
+              })
             }
           />
           <SortSelector

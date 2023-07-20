@@ -18,8 +18,8 @@ const useGames = (gameQuery: GameQuery) => useQuery<FetchResponse<Game>,Error>({
     queryFn: () =>
         apiClient.getAll({
         params: {
-            genres: gameQuery.genre?.id,
-            parent_platforms: gameQuery.parent_platforms?.id,
+            genres: gameQuery.genreId,
+            parent_platforms: gameQuery.parent_platformsId,
             search: gameQuery.searchText,
             ordering: gameQuery.sortOrder
         }
