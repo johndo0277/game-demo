@@ -13,7 +13,7 @@ export interface Platform{
 }
 
 const usePlatforms = () => useQuery({
-    queryKey: ['platfroms'],
+    queryKey: ['platforms'],
     queryFn: apiClient.getAll,
 
     staleTime: 24 * 60 * 60 * 1000, // 24h
